@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>HBD Utyy! 🎂</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&display=swap');
+
+        :root {
+            --pink: #FFB6C1;
+            --blue: #A2D2FF;
+            --white: #FFFFFF;
+            --hot-pink: #FF69B4;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #FFDEE9 0%, #B5FFFC 100%);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Fredoka', sans-serif;
+            overflow: hidden;
+            touch-action: none; 
+        }
+
+        /* Marquee Bar yang Langsung Berjejer Teksnya */
+        .marquee-bar {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(8px);
+            padding: 15px 0;
+            border-bottom: 2px solid var(--white);
+            z-index: 100;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee-track {
+            display: inline-block;
+            /* Kecepatan sedang: 15 detik untuk looping */
+            animation: move-text 15s linear infinite;
+        }
+
+        .marquee-track span {
+            font-size: 1.4em;
+            color: var(--hot-pink);
+            font-weight: bold;
+            padding-right: 30px;
+        }
+
+        /* Teknik supaya teks nyambung terus tanpa jeda kosong */
+        @keyframes move-text {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* Dashboard Utama - Stabil & Kalem */
+        .dashboard {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 55px 35px;
+            border-radius: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            z-index: 10;
+            width: 80%;
+            max-width: 350px;
+            /* Hanya melayang halus tanpa efek membesar/mengecil */
+            animation: floating 4s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hug-emot {
+            font-size: 3em;
+            display: block;
+            margin-bottom: 15px;
+            color: var(--hot-pink);
+            filter: drop-shadow(0 0 5px var(--pink));
+        }
+
+        .main-title {
+            font-size: 2.8em;
+            margin: 0;
+            background: linear-gradient(45deg, #FF69B4, #2196F3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+
+        .sub-text {
+            color: #55acee;
+            font-size: 1.1em;
+            margin-top: 15px;
+            opacity: 0.9;
+        }
+
+        /* Item Terbang - Cake & Heart */
+        .floating-item {
+            position: absolute;
+            bottom: -100px;
+            pointer-events: none;
+            z-index: 1;
+            animation: rise linear forwards;
+        }
+
+        @keyframes rise {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="marquee-bar">
+        <div class="marquee-track">
+            <span>bahagia selalu utyy • hbd utyy sayang • panjang umur & sehat selalu • love u utyy! 💖</span>
+            <span>bahagia selalu utyy • hbd utyy sayang • panjang umur & sehat selalu • love u utyy! 💖</span>
+        </div>
+    </div>
+
+    <div class="dashboard">
+        <span class="hug-emot">(づ｡◕‿‿◕｡)づ</span>
+        <h1 class="main-title">HAPPY BIRTHDAY<br>UTYY!</h1>
+        <p class="sub-text">Wish you all the best, Sayang! 🥳</p>
+    </div>
+
+    <script>
+        function createItem() {
+            const items = ['🎂', '🍰', '🧁', '💖', '🎈', '✨'];
+            const el = document.createElement('div');
+            el.className = 'floating-item';
+            el.innerText = items[Math.floor(Math.random() * items.length)];
+            
+            el.style.left = Math.random() * 100 + 'vw';
+            const size = Math.random() * 15 + 20;
+            el.style.fontSize = size + 'px';
+            
+            // Kecepatan terbang yang santai (6-9 detik)
+            const duration = Math.random() * 3 + 6;
+            el.style.animationDuration = duration + 's';
+            
+            document.body.appendChild(el);
+            setTimeout(() => el.remove(), duration * 1000);
+        }
+
+        // Munculkan item secara berkala
+        setInterval(createItem, 700);
+    </script>
+</body>
+</html>
